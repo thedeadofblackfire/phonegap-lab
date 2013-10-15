@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.css" />
+        <script type="text/javascript" charset="utf-8" src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+        <!--<link rel="stylesheet" type="text/css" href="css/index.css" />-->
+        <style>
+		body {
+			padding: 0;
+			margin: 0;
+		}
+		html, body, #map {
+			height: 100%;
+		}
+	</style>
+
+        <title>Gps</title>
+    </head>
+    <body>
+        <div class="app">
+            <h1>Gps</h1>
+			
+            <div id="map"></div>
+
+        </div>
+        <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/gps.js"></script>
+        <script type="text/javascript" charset="utf-8">   
+        
+        var map = L.map('map');
+
+        L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18
+        }).addTo(map);
+
+        /*
+        	L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/256/{z}/{x}/{y}.png', {
+			maxZoom: 18,
+			attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
+		}).addTo(map)
+        */
+       
+       	function onLocationFound(e) {
+			var radius = e.accuracy / 2;
+
+			L.marker(e.latlng).addTo(map)
+				.bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+			L.circle(e.latlng, radius).addTo(map);
+		}
+
+        
+        function onLocationError(e) {
+            alert(e.message);
+        }
+
+        var onSuccess = function(position) {
+            var pos = new L.LatLng(position.coords.latitude , position.coords.longitude); 
+            //var marker = L.marker(pos).addTo(map);    
+           var radius = position.coords.accuracy / 2;
+
+            L.marker(pos).addTo(map)
+                .bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+            L.circle(pos, radius).addTo(map);
+        };
+
+        // onError Callback receives a PositionError object
+        //
+        function onError(error) {        
+            map.on('locationfound', onLocationFound);
+            map.on('locationerror', onLocationError);
+        }
+
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+
+        map.locate({setView: true, maxZoom: 16});
+        </script>
+    </body>
+</html>
