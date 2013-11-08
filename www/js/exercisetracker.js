@@ -32,12 +32,15 @@ var tracking_data = []; // Array containing GPS position objects
 
 $("#startTracking_start").live('click', function(){
     
+    console.log('startTracking_start');
+    
 	// Start tracking the User
     watch_id = navigator.geolocation.watchPosition(
     
     	// Success
         function(position){
             tracking_data.push(position);
+            console.log(position.coords.latitude + ' & ' + position.coords.longitude);
         },
         
         // Error
@@ -46,7 +49,7 @@ $("#startTracking_start").live('click', function(){
         },
         
         // Settings
-        { frequency: 3000, enableHighAccuracy: true });
+        { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
     
     // Tidy up the UI
     track_id = $("#track_id").val();
@@ -59,6 +62,8 @@ $("#startTracking_start").live('click', function(){
 
 $("#startTracking_stop").live('click', function(){
 	
+    console.log('startTracking_stop');
+    
 	// Stop tracking the user
 	navigator.geolocation.clearWatch(watch_id);
 	
@@ -78,11 +83,12 @@ $("#startTracking_stop").live('click', function(){
 
 $("#home_clearstorage_button").live('click', function(){
 	window.localStorage.clear();
+    console.log('home_clearstorage_button');
 });
 
 $("#home_seedgps_button").live('click', function(){
 	window.localStorage.setItem('Sample block', '[{"timestamp":1335700802000,"coords":{"heading":null,"altitude":null,"longitude":170.33488333333335,"accuracy":0,"latitude":-45.87475166666666,"speed":null,"altitudeAccuracy":null}},{"timestamp":1335700803000,"coords":{"heading":null,"altitude":null,"longitude":170.33481666666665,"accuracy":0,"latitude":-45.87465,"speed":null,"altitudeAccuracy":null}},{"timestamp":1335700804000,"coords":{"heading":null,"altitude":null,"longitude":170.33426999999998,"accuracy":0,"latitude":-45.873708333333326,"speed":null,"altitudeAccuracy":null}},{"timestamp":1335700805000,"coords":{"heading":null,"altitude":null,"longitude":170.33318333333335,"accuracy":0,"latitude":-45.87178333333333,"speed":null,"altitudeAccuracy":null}},{"timestamp":1335700806000,"coords":{"heading":null,"altitude":null,"longitude":170.33416166666666,"accuracy":0,"latitude":-45.871478333333336,"speed":null,"altitudeAccuracy":null}},{"timestamp":1335700807000,"coords":{"heading":null,"altitude":null,"longitude":170.33526833333332,"accuracy":0,"latitude":-45.873394999999995,"speed":null,"altitudeAccuracy":null}},{"timestamp":1335700808000,"coords":{"heading":null,"altitude":null,"longitude":170.33427333333336,"accuracy":0,"latitude":-45.873711666666665,"speed":null,"altitudeAccuracy":null}},{"timestamp":1335700809000,"coords":{"heading":null,"altitude":null,"longitude":170.33488333333335,"accuracy":0,"latitude":-45.87475166666666,"speed":null,"altitudeAccuracy":null}}]');
-
+    console.log('home_seedgps_button');
 });
 
 // When the user views the history page
