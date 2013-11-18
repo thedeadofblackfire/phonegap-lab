@@ -95,6 +95,11 @@ $("#home_clearstorage_button").live('click', function(){
 
 $("#home_seedgps_button").live('click', function(){
 	window.localStorage.setItem('Sample block', '[{"timestamp":1335700802000,"coords":{"heading":null,"altitude":null,"longitude":170.33488333333335,"accuracy":0,"latitude":-45.87475166666666,"speed":null,"altitudeAccuracy":null}},{"timestamp":1335700803000,"coords":{"heading":null,"altitude":null,"longitude":170.33481666666665,"accuracy":0,"latitude":-45.87465,"speed":null,"altitudeAccuracy":null}},{"timestamp":1335700804000,"coords":{"heading":null,"altitude":null,"longitude":170.33426999999998,"accuracy":0,"latitude":-45.873708333333326,"speed":null,"altitudeAccuracy":null}},{"timestamp":1335700805000,"coords":{"heading":null,"altitude":null,"longitude":170.33318333333335,"accuracy":0,"latitude":-45.87178333333333,"speed":null,"altitudeAccuracy":null}},{"timestamp":1335700806000,"coords":{"heading":null,"altitude":null,"longitude":170.33416166666666,"accuracy":0,"latitude":-45.871478333333336,"speed":null,"altitudeAccuracy":null}},{"timestamp":1335700807000,"coords":{"heading":null,"altitude":null,"longitude":170.33526833333332,"accuracy":0,"latitude":-45.873394999999995,"speed":null,"altitudeAccuracy":null}},{"timestamp":1335700808000,"coords":{"heading":null,"altitude":null,"longitude":170.33427333333336,"accuracy":0,"latitude":-45.873711666666665,"speed":null,"altitudeAccuracy":null}},{"timestamp":1335700809000,"coords":{"heading":null,"altitude":null,"longitude":170.33488333333335,"accuracy":0,"latitude":-45.87475166666666,"speed":null,"altitudeAccuracy":null}}]');
+    
+    //window.localStorage.setItem('Sample bethune', '[{"timestamp":1335700802000,"coords":{"heading":null,"altitude":null,"longitude":50.532525,"accuracy":0,"latitude":2.639809,"speed":null,"altitudeAccuracy":null}},{"timestamp":1335700819000,"coords":{"heading":null,"altitude":null,"longitude":50.481678,"accuracy":0,"latitude":2.662075,"speed":null,"altitudeAccuracy":null}}]');
+    
+   // https://maps.google.fr/maps?saddr=Grand+Place&daddr=N%C5%93ux-les-Mines&hl=fr&ie=UTF8&ll=50.521012,2.654142&spn=0.051078,0.132093&sll=50.532525,2.639809&sspn=0.051066,0.132093&geocode=FXILAwMd9EYoAA%3BFTxIAgMdHp8oAClHHS0tzDzdRzFSSLo-yGHwoA&oq=noeux+&mra=dme&mrsp=0&sz=14&t=m&z=14
+    
     console.log('home_seedgps_button');
 });
 
